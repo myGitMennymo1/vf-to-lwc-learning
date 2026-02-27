@@ -1,0 +1,59 @@
+The essential design patterns used in LWC:
+
+### 1. Component Communication Patterns
+
+This is the most critical category, defining how data flows between different parts of your UI.
+
+* **Parent-to-Child (Properties):** Passing data down using the `@api` decorator. The parent sets a public property on the child.
+* **Child-to-Parent (Events):** Using `CustomEvent` and `this.dispatchEvent()` to send signals upward.
+* **Unrelated Component Communication (LMS):** Using **Lightning Message Service (LMS)** to allow two components to talk even if they aren't in the same hierarchy (e.g., a Sidebar component talking to a Main Content component).
+* **Pub/Sub (Deprecated):** An older pattern for unrelated communication, now almost entirely replaced by LMS.
+
+---
+
+### 2. Data Management Patterns
+
+These patterns handle how your component interacts with Salesforce data.
+
+* **Wire Service Pattern:** The "reactive" way to get data. You use `@wire` to bind a property or function to a Salesforce adapter. If the record changes, the UI updates automatically.
+* **Imperative Apex Pattern:** Calling Apex methods like a standard JavaScript promise (`.then().catch()`). Used when you need data "on-demand" (e.g., when a user clicks a specific button).
+* **Data Cache Pattern:** Using the Lightning Data Service (LDS) to ensure that if one component updates a record, all other components on the page showing that same record update instantly without a page refresh.
+
+---
+
+### 3. Composition & Structural Patterns
+
+How you organize your code for reusability.
+
+* **Container Component Pattern:** A "Smart" component that handles data fetching and logic, which then passes that data down to "Dumb" (Presentational) components that only handle the UI.
+* **Service Component Pattern:** Creating a library-style LWC that has no HTML template. It only contains JavaScript functions (like a math library or a data formatter) that other components can import and use.
+* **Slot Pattern:** Using `<slot></slot>` tags to allow a parent to pass entire chunks of HTML/components into a child, making the child a flexible wrapper (like a custom modal or card).
+
+---
+
+### 4. Behavioral Patterns
+
+Managing how the component reacts to the user.
+
+* **Debouncing Pattern:** Delaying the execution of a function (like a search) until the user stops typing for a few milliseconds. This prevents hitting Salesforce limits with too many Apex calls.
+* **Singleton Pattern (via Modules):** Using a shared JavaScript module to maintain a single state or configuration across multiple components in a single session.
+
+---
+
+### 5. Error Handling Pattern
+
+* **Error Boundary Pattern:** Using the `errorCallback(error, stack)` lifecycle hook to "catch" errors in child components so the entire page doesn't crash, allowing you to show a graceful "Something went wrong" message instead.
+
+---
+
+### Quick Comparison: When to use what?
+
+| Goal | Best Pattern |
+| --- | --- |
+| **Pass data to child** | `@api` Properties |
+| **Send data to parent** | `CustomEvent` |
+| **Talk to a different app** | Lightning Message Service (LMS) |
+| **Reuse JS Logic** | Service Component |
+| **Search-as-you-type** | Debouncing |
+
+**Would you like a code example of the "Service Component" pattern? It’s one of the best ways to keep your project clean by avoiding repeated code.**

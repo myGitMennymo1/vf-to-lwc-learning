@@ -5,4 +5,12 @@
         onchange={handleChange}
     ></lightning-input>
     <p class="course-name">Course name is: {courseName}</p>
+
+
+    <br>    
+    <p>{student.address.city}</p>
+<lightning-button label="Change City - Recommended Way" onclick={changeCity}></lightning-button>
+<p> </p>
+<lightning-button label="Change City - NOT Recommended Way" onclick={changeCity1}></lightning-button>
+   
 </template>
