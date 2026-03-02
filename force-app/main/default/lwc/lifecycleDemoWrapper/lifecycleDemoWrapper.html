@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="LWC Lifecycle Comparison">
+        <div class="slds-p-around_medium">
+            <p>Check the Browser Console (F12) to see the execution order!</p>            
+            <c-lifecycle-connected></c-lifecycle-connected>
+            <c-lifecycle-rendered></c-lifecycle-rendered>
+        </div>
+    </lightning-card>
+</template>
+<!--
+ Feature	        connectedCallback	                                                renderedCallback
+When?	        When the element is inserted into the tree.	                    After the component is finished rendering.
+DOM Access?	    No. Elements aren't in the browser yet.	                        Yes. You can find and touch elements.
+Best For?	    Data fetching, setting initial variables, subscribing to LMS.	Third-party JS libraries (Charts, Maps), auto-focusing inputs.
+Risk?	        Changing data here is safe.	                                    Changing data here can cause an infinite loop 
+                                                                                (Render -> Change Data -> Render Again). 
+-->

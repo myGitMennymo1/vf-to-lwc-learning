@@ -1,5 +1,36 @@
 <template>
-    <template for:each={courses} for:item="course">
-        <p key={course}>{course}</p>
+    <I><u>VALUES in LWC (without real key):</u></I>
+    <template for:each={foods} for:item="crs">
+        <p key={crs}>{crs}</p>
     </template>
+
+    <br></br>
+
+    <!-- Keys should represent identity, not display value. 
+        In real LWC development  your list will usually be an Object (account,contact etc.)
+        so it will have a record.Id like this:
+        <p key={rec.Id}>{rec.Name}</p>        
+        -> so , for the example: -->
+<I><u>With real key:</u></I>
+    <template if:true={courses1}>
+        <template for:each={courses1} for:item="crs1">
+            <p key={crs1.id}>
+                {crs1.name}
+            </p>
+        </template>
+    </template>
+    <template if:false={courses1}>
+        <p>No courses available</p>
+    </template>
+
+     <lightning-button 
+        label="Shuffle Courses"
+        onclick={handleShuffle}
+        class="slds-m-bottom_medium">
+    </lightning-button>
+
+
+
+
+
 </template>

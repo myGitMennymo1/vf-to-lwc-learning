@@ -1,5 +1,6 @@
 <apex:page controller="BeforeRenderHookController" action="{!populateCourses}">
-    <apex:repeat value="{!courses}" var="course">
-        <p>{!course}</p>
+<I><u>VALUES in VF PAGE:</u></I>
+<apex:repeat value="{!courses}" var="crs">
+        <p>{!crs}</p>
     </apex:repeat>
 </apex:page>

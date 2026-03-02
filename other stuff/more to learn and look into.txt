@@ -1,0 +1,4 @@
+1) design patterns
+2) lifecycle
+3) wrapper/custom components
+In the world of Salesforce development, the c- is a Namespace Prefix. It is the standard way LWC identifies custom components.

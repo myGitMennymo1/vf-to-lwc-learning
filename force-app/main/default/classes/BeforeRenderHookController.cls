@@ -5,7 +5,7 @@ public with sharing class BeforeRenderHookController {
         // Typically this list would be constructed with SOQL
         courses = new List<String>{
             'Irrigation Systems',
-            'Soils',
+            'Soils',           
             'Organic Crops'
         };
     }
