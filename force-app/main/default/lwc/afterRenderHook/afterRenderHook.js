@@ -11,3 +11,8 @@ export default class AfterRenderHook extends LightningElement {
         }
     }
 }
+/* renderedCallback ==> after UI finished rendering. 
+Only place to manually manipulate DOM elements (use with caution).
+Use renderedCallback when you need to interact with the UI (the HTML) 
+after it exists. for example: You cannot "focus" an element in connectedCallback 
+because the element doesn't exist in the browser yet! */
